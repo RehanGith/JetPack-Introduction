@@ -6,13 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.scrollable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
@@ -33,34 +32,44 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            DisplayLinear()
+            Layout()
         }
 
     }
+
     @Composable
-    fun DisplayLinear() {
-        Row(modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black)
-            .horizontalScroll(
-                rememberScrollState()
-            ),
-            verticalAlignment = Alignment.CenterVertically) {
-            for(i in 1..30) {
-                Text(
-                    text = "Hello Rehan!",
-                    modifier = Modifier
-                        .fillMaxWidth(1f)
-                        .background(Color.Gray)
-                        .padding(20.dp),
-                    color = Color.Cyan,
-                    fontFamily = FontFamily.SansSerif,
-                    fontSize = 30.sp,
-                    textAlign = TextAlign.Center
-                )
+    fun Layout() {
+//        Column(modifier = Modifier
+//            .fillMaxSize()
+//            .background(Color.Black)
+//            .verticalScroll(
+//                rememberScrollState()
+//            ), verticalArrangement = Arrangement.SpaceAround,
+//            horizontalAlignment = Alignment.CenterHorizontally) {
+//            for(i in 1..5) {
+//                Text(
+//                    text = "Hello Rehan!",
+//                    modifier = Modifier
+//                        .fillMaxWidth(1f)
+//                        .background(Color.Gray),
+//                    color = Color.Cyan,
+//                    fontFamily = FontFamily.SansSerif,
+//                    fontSize = 30.sp,
+//                    textAlign = TextAlign.Center
+//                )
+//            }
+        LazyColumn(content = {
+            item {
+                for(i in 1..5) {
+                    Text(text = "Hello From Rehan!", modifier = Modifier
+                        .background(Color.Cyan)
+                        .fillMaxWidth(), fontSize = 20.sp )
+                }
             }
         }
+        )
     }
 }
+
 
 
