@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,13 +37,19 @@ class MainActivity : ComponentActivity() {
     }
     @Composable
     fun DisplayLinear() {
-        Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
-            for(i in 1..20) {
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black)
+            .verticalScroll(
+                rememberScrollState()
+            ), verticalArrangement = Arrangement.Center) {
+            for(i in 1..30) {
                 Text(
                     text = "Hello Rehan!",
                     modifier = Modifier
                         .fillMaxWidth(1f)
-                        .background(Color.Gray),
+                        .background(Color.Gray)
+                        .padding(20.dp),
                     color = Color.Cyan,
                     fontFamily = FontFamily.SansSerif,
                     fontSize = 30.sp,
