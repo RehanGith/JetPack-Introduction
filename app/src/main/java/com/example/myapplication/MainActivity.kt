@@ -6,8 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -37,12 +39,13 @@ class MainActivity : ComponentActivity() {
     }
     @Composable
     fun DisplayLinear() {
-        Column(modifier = Modifier
+        Row(modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
-            .verticalScroll(
+            .horizontalScroll(
                 rememberScrollState()
-            ), verticalArrangement = Arrangement.Center) {
+            ),
+            verticalAlignment = Alignment.CenterVertically) {
             for(i in 1..30) {
                 Text(
                     text = "Hello Rehan!",
