@@ -7,18 +7,26 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
@@ -34,24 +42,17 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun Layout() {
-        Card(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Gray),
-            elevation = CardDefaults.cardElevation(10.dp)
-        ) {
-            Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
-                Image(
-                    painter = painterResource(id = R.drawable.profile),
-                    contentDescription = "my profile pic",
-                    modifier = Modifier.clip(RoundedCornerShape(50.dp))
-                )
-                Text(text = "Muhammad Rehan", textAlign = TextAlign.Center)
-            }
-
+        var textFieldValue by remember {
+            mutableStateOf(TextFieldValue("Rehan"))
+        }
+        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+            TextField(value = textFieldValue, onValueChange = {
+                textFieldValue = it
+            })
         }
     }
 }
+
 
 
 
