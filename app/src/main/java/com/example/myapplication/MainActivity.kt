@@ -12,8 +12,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -25,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
@@ -43,12 +47,16 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun Layout() {
         var textFieldValue by remember {
-            mutableStateOf(TextFieldValue("Rehan"))
+            mutableStateOf(TextFieldValue(""))
         }
         Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
             TextField(value = textFieldValue, onValueChange = {
                 textFieldValue = it
-            })
+            }, label = { Text(text = "Name") },
+                placeholder = { Text(text = "Enter your name") }
+                , leadingIcon = { Icon(Icons.Default.Person, contentDescription = "person pic") }
+                , singleLine = true
+            )
         }
     }
 }
