@@ -41,6 +41,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.myapplication.screens.ScreenA
+import com.example.myapplication.screens.ScreenB
+import com.example.myapplication.screens.ScreenC
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -49,7 +55,49 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyApplicationTheme {
+                val navController = rememberNavController()
+                val navHost  = NavHost(navController = navController, startDestination = "screen_a" ) {
+                    composable (
+                        route = "screen_a"
+                    ) {
+                        ScreenA(
+                            onNavigateToScreenB = {
+                                navController.navigate("screen_b")
+                            }
+                        )
 
+                    }
+                    composable(
+                        route = "screen_b"
+                    ) {
+                        ScreenB(
+                            onNavigateToScreenA = {
+                                navController.popBackStack()
+                            },
+                            onNavigateToScreenC = {
+                                navController.navigate("screen_c")
+                            }
+                        )
+                    }
+                    composable(
+                        route = "screen_c"
+                    ) {
+                        ScreenC(
+                            onNavigateToScreenB = {
+                                navController.popBackStack()
+                            },
+                            onNavigateToScreenA = {
+                                navController.navigate("screen_a"){
+                                    popUpTo("screen_b"){
+                                        inclusive = true
+                                    }
+                                }
+                            }
+                        )
+                    }
+
+
+                }
             }
         }
 
