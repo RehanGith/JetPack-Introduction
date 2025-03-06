@@ -48,57 +48,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Layout()
+
         }
 
     }
 
-
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    fun Layout() {
-        MyApplicationTheme {
-
-            Scaffold(
-                contentWindowInsets = WindowInsets.safeGestures,
-                topBar = {
-                    TopAppBar(title = { Text(text = "Hello") },
-                        colors = TopAppBarDefaults.topAppBarColors(
-                            containerColor = Color.LightGray
-                        )
-                        )
-                },
-                bottomBar = {
-                    BottomAppBar {
-
-                    }
-                }
-            ) { contentPadding ->
-                LazyVerticalGrid(columns = GridCells.Adaptive(100.dp),
-                    contentPadding = contentPadding,
-                    content =
-                    {
-                        items(100) {
-                            Box(
-                                modifier = Modifier
-                                    .padding(10.dp)
-                                    .background(Color.Green)
-                                    .clip(
-                                        RoundedCornerShape(10.dp)
-                                    )
-                                    .aspectRatio(1f), contentAlignment = Alignment.Center
-                            ) {
-                                Text(text = "Hello $it", fontSize = 20.sp)
-                            }
-                        }
-
-                    }
-                )
-
-            }
-        }
-    }
 }
+
 
 
 
