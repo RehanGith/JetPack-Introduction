@@ -18,27 +18,44 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.myapplication.model.Person
 
 
 @Composable
 fun ScreenA(
-    onNavigateToScreenB: (String) -> Unit
+    onNavigateToScreenB: (Person) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
-        var text by remember {
+        var name by remember {
+            mutableStateOf("")
+        }
+        var age by remember {
+            mutableStateOf("")
+        }
+        var phone by remember {
             mutableStateOf("")
         }
 
-        TextField(value = text, onValueChange = {
-            text = it
+        TextField(value = name, onValueChange = {
+            name = it
+        })
+
+        Spacer(modifier = Modifier.height(10.dp))
+        TextField(value = age, onValueChange = {
+            age = it
+        })
+
+        Spacer(modifier = Modifier.height(10.dp))
+        TextField(value = phone, onValueChange = {
+            phone = it
         })
 
         Spacer(modifier = Modifier.height(10.dp))
 
         Button(onClick = {
-            onNavigateToScreenB(text)
+            onNavigateToScreenB(Person(name, age, phone))
         }) {
             Text(text = "Submit")
         }

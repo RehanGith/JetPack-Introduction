@@ -6,15 +6,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.myapplication.model.Person
 
 
 @Composable
 fun ScreenB(
-    text: String
+    person: Person
 ) {
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center ) {
-        Text(text = text, modifier = Modifier.align(Alignment.Center))
+        Text(text = person.toString(), modifier = Modifier.align(Alignment.Center))
     }
 
 }

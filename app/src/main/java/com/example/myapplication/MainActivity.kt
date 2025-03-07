@@ -46,6 +46,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.myapplication.model.Person
 import com.example.myapplication.screens.ScreenA
 import com.example.myapplication.screens.ScreenB
 import com.example.myapplication.screens.ScreenC
@@ -64,24 +65,19 @@ class MainActivity : ComponentActivity() {
                         route = "screenA"
                     ) {
                         ScreenA(onNavigateToScreenB = {
-                            navController.navigate("screenB/${it}")
-
+                            navController.currentBackStackEntry?.savedStateHandle?.set("person", it)
+                            navController.navigate("screenB")
                         })
 
                     }
                     composable(
-                        route = "screenB/{text}",
-                        arguments = listOf(
-                            navArgument("text") {
-                                type = NavType.StringType
-                                nullable = true
-                                defaultValue = "No Text"
-                            }
-                        )
+                        route = "screenB",
+
                     ) {
-                        it.arguments?.getString("text")?.let {
-                            ScreenB(text = it)
-                        }
+                        navController.previousBackStackEntry?.savedStateHandle?.get<Person>("person")
+                            ?.let {
+                                ScreenB(person = it)
+                            }
 
                     }
                 }
